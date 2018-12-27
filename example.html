@@ -51,14 +51,15 @@
   var dizi = [];
 	
 $(".ileriGeri#ileri").on("click", function () {
-	basma++;
+	
 	$(butonlar).each(function( index ) {
 		dizi[index] = $(butonlar[index]).hasClass("active");
 	});
 	
 	var suanki = dizi.indexOf(true);
+	basma = suanki-1;
 
-	if(basma < dizi.length){
+	if(basma < dizi.length-2){
 		$(butonlar).each(function( index ) {
 			$(butonlar[suanki]).removeClass("active");
 		});
@@ -69,26 +70,28 @@ $(".ileriGeri#ileri").on("click", function () {
 
 		$(butonlar[suanki+1]).addClass("active");
 		$(icerikler[suanki+1]).addClass("active show");
+		basma++;
+		
 	}
 	else{
-		basma = dizi.length-1;
+		basma = dizi.length-2;
 	}
-
-	console.log(basma);
-
+console.log(basma);
 });
 
 $(".ileriGeri#geri").on("click", function () {
+	$(butonlar).each(function( index ) {
+	dizi[index] = $(butonlar[index]).hasClass("active");
+	});
+	
+	var suanki = dizi.indexOf(true);
+	basma = suanki;
+		
 	if(basma < 1){
 		basma = 0;
 	}
 	else{
-				$(butonlar).each(function( index ) {
-			dizi[index] = $(butonlar[index]).hasClass("active");
-		});
-	
-		var suanki = dizi.indexOf(true);
-	
+
 		$(butonlar).each(function( index ) {
 			$(butonlar[suanki]).removeClass("active");
 		});
@@ -100,10 +103,10 @@ $(".ileriGeri#geri").on("click", function () {
 		$(butonlar[suanki-1]).addClass("active");
 		$(icerikler[suanki-1]).addClass("active show");
 		basma--;
+
 	}
-
-	console.log(basma);
-
+		console.log(basma);
+		
 });			
 
 </script>
