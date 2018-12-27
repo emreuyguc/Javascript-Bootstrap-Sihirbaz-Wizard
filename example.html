@@ -25,14 +25,14 @@
                <div class="tab-pane fade" id="nav-onay" role="tabpanel" aria-labelledby="nav-onay-tab">.asdasd..</div>
             </div>
             <nav aria-label="Page navigation example">
-               <ul class="pagination justify-content-end">
-                  <li class="page-item">
-                     <a class="ileriGeri page-link " id="geri" >Previous</a>
-                  </li>
-                  <li class="page-item">
-                     <a class="ileriGeri page-link " id="ileri">Next</a>
-                  </li>
-               </ul>
+              <ul class="pagination justify-content-end">
+              <li class="page-item">
+                <a class="ileriGeri page-link" id	="geri" >Geri</a>
+              </li>
+              <li class="page-item">
+                <a class="ileriGeri page-link" id="ileri" >İleri</a>
+              </li>
+              </ul>
             </nav>
          </div>
       </div>
@@ -43,39 +43,69 @@
  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-
 <script>
-   var butonlar = $( "div.nav" ).children();
-   var icerikler = $( "div.tab-content" ).children();
-    var basma = 0;
-   $(".ileriGeri").on("click", function () {
-   var dizi = [];
-   
-   $(butonlar).each(function( index ) {
-   	dizi[index] = $(butonlar[index]).hasClass("active");
-   });
-   
-   var suanki = dizi.indexOf(true);
-   
-   $(butonlar).each(function( index ) {
-   	$(butonlar[suanki]).removeClass("active");
-   });
-   $(icerikler).each(function( index ) {
-   	$(icerikler[suanki]).removeClass("active");
-   	$(icerikler[suanki]).removeClass("show");
-   });
-   basma++;
-   if(basma < dizi.length){
-   	$(butonlar[suanki+1]).addClass("active");
-   	$(icerikler[suanki+1]).addClass("active show");
-   }
-   else{
-   	$(butonlar[0]).addClass("active");
-   	$(icerikler[0]).addClass("active show");
-   	basma = 0;
-   }
-   
-   });
+					
+ var butonlar = $( "div.nav" ).children();
+ var icerikler = $( "div.tab-content" ).children();
+  var basma = 0;
+  var dizi = [];
+	
+$(".ileriGeri#ileri").on("click", function () {
+	basma++;
+	$(butonlar).each(function( index ) {
+		dizi[index] = $(butonlar[index]).hasClass("active");
+	});
+	
+	var suanki = dizi.indexOf(true);
+
+	if(basma < dizi.length){
+		$(butonlar).each(function( index ) {
+			$(butonlar[suanki]).removeClass("active");
+		});
+		$(icerikler).each(function( index ) {
+			$(icerikler[suanki]).removeClass("active");
+			$(icerikler[suanki]).removeClass("show");
+		})
+
+		$(butonlar[suanki+1]).addClass("active");
+		$(icerikler[suanki+1]).addClass("active show");
+	}
+	else{
+		basma = dizi.length-1;
+	}
+
+	console.log(basma);
+
+});
+
+$(".ileriGeri#geri").on("click", function () {
+	if(basma < 1){
+		basma = 0;
+	}
+	else{
+				$(butonlar).each(function( index ) {
+			dizi[index] = $(butonlar[index]).hasClass("active");
+		});
+	
+		var suanki = dizi.indexOf(true);
+	
+		$(butonlar).each(function( index ) {
+			$(butonlar[suanki]).removeClass("active");
+		});
+		$(icerikler).each(function( index ) {
+			$(icerikler[suanki]).removeClass("active");
+			$(icerikler[suanki]).removeClass("show");
+		});
+	
+		$(butonlar[suanki-1]).addClass("active");
+		$(icerikler[suanki-1]).addClass("active show");
+		basma--;
+	}
+
+	console.log(basma);
+
+});			
+
 </script>
 </body>
 </html>
