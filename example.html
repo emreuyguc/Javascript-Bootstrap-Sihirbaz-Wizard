@@ -1,0 +1,81 @@
+<html>
+<head>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+
+</head>
+<body>
+  
+  <div class="container">
+   <div class="row">
+      <div class="col">
+         <hr>
+         <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-bilgi-tab" data-toggle="tab" href="#nav-bilgi" role="tab" aria-controls="nav-bilgi" aria-selected="true">Ders Bilgileri</a>
+            <a class="nav-item nav-link" id="nav-icerik-tab" data-toggle="tab" href="#nav-icerik" role="tab" aria-controls="nav-icerik" aria-selected="false">Ders İçeriği</a>
+            <a class="nav-item nav-link" id="nav-materyal-tab" data-toggle="tab" href="#nav-materyal" role="tab" aria-controls="nav-materyal" aria-selected="false">Materyaller</a>
+            <a class="nav-item nav-link" id="nav-onay-tab" data-toggle="tab" href="#nav-onay" role="tab" aria-controls="nav-onay" aria-selected="false">Onaylama</a>
+         </div>
+         <div class="regular_content">
+            <div class="tab-content" id="nav-tabContent">
+               <div class="tab-pane fade show active" id="nav-bilgi" role="tabpanel" aria-labelledby="nav-bilgi-tab">..sdfsaf.</div>
+               <div class="tab-pane fade" id="nav-icerik" role="tabpanel" aria-labelledby="nav-icerik-tab">..asdgasdg.</div>
+               <div class="tab-pane fade" id="nav-materyal" role="tabpanel" aria-labelledby="nav-materyal-tab">...awefas</div>
+               <div class="tab-pane fade" id="nav-onay" role="tabpanel" aria-labelledby="nav-onay-tab">.asdasd..</div>
+            </div>
+            <nav aria-label="Page navigation example">
+               <ul class="pagination justify-content-end">
+                  <li class="page-item">
+                     <a class="ileriGeri page-link " id="geri" >Previous</a>
+                  </li>
+                  <li class="page-item">
+                     <a class="ileriGeri page-link " id="ileri">Next</a>
+                  </li>
+               </ul>
+            </nav>
+         </div>
+      </div>
+   </div>
+</div>
+  
+  
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script>
+   var butonlar = $( "div.nav" ).children();
+   var icerikler = $( "div.tab-content" ).children();
+    var basma = 0;
+   $(".ileriGeri").on("click", function () {
+   var dizi = [];
+   
+   $(butonlar).each(function( index ) {
+   	dizi[index] = $(butonlar[index]).hasClass("active");
+   });
+   
+   var suanki = dizi.indexOf(true);
+   
+   $(butonlar).each(function( index ) {
+   	$(butonlar[suanki]).removeClass("active");
+   });
+   $(icerikler).each(function( index ) {
+   	$(icerikler[suanki]).removeClass("active");
+   	$(icerikler[suanki]).removeClass("show");
+   });
+   basma++;
+   if(basma < dizi.length){
+   	$(butonlar[suanki+1]).addClass("active");
+   	$(icerikler[suanki+1]).addClass("active show");
+   }
+   else{
+   	$(butonlar[0]).addClass("active");
+   	$(icerikler[0]).addClass("active show");
+   	basma = 0;
+   }
+   
+   });
+</script>
+</body>
+</html>
